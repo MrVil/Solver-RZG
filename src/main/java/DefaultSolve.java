@@ -8,10 +8,10 @@ public class DefaultSolve implements ISolve {
     private Model model = new Model("Backpack problem with "+n+" objects.");
 
 
-    IntVar[] occurences = new IntVar[n];
-    IntVar weightSum = null, energySum = null;
-    int[] weight = {2, 5, 1, 10, 5}, energy = {6, 4, 2, 8, 5};
-    private int capacity = 30;
+    private IntVar[] occurences = new IntVar[n];
+    private IntVar weightSum = null, energySum = null;
+    private int[] weight = {2, 5, 1, 10, 5}, energy = {6, 4, 2, 8, 5};
+    private int capacity = 10;
 
     public void defineModel() {
 
