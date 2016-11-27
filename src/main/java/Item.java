@@ -3,20 +3,21 @@ import org.chocosolver.solver.variables.IntVar;
 
 public class Item {
 
-    private IntVar weight, utility;
-    private BoolVar isPicked;
+    private int weight;
+    private IntVar utility;
+    private IntVar isPicked;
 
-    public Item(IntVar weight, IntVar utility, BoolVar isPicked) {
+    public Item(int weight, IntVar utility, IntVar isPicked) {
         this.weight = weight;
         this.utility = utility;
         this.isPicked = isPicked;
     }
 
-    public IntVar getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(IntVar weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -28,11 +29,11 @@ public class Item {
         this.utility = utility;
     }
 
-    public BoolVar getIsPicked() {
+    public IntVar getIsPicked() {
         return isPicked;
     }
 
-    public void setIsPicked(BoolVar isPicked) {
+    public void setIsPicked(IntVar isPicked) {
         this.isPicked = isPicked;
     }
 }
