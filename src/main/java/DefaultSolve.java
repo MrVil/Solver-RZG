@@ -13,6 +13,15 @@ public class DefaultSolve implements ISolve {
     private int[] weight = {2, 5, 1, 10, 5}, energy = {6, 4, 2, 8, 5};
     private int capacity = 10;
 
+    public DefaultSolve(int[] weight, int[] energy) {
+        this.weight = weight;
+        this.energy = energy;
+
+        this.capacity = weight.length;
+        this.n = weight.length;
+        this.occurences = new IntVar[n];
+    }
+
     public void defineModel() {
 
 
