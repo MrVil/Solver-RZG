@@ -18,6 +18,10 @@ public class ParetoSolve implements ISolve {
     private IntVar weight;
     private IntVar utility;
 
+    public void randomize() {
+
+    }
+
     public void defineModel() {
         this.n = 4;
         this.nbItems = new int[]{5, 2, 6, 7}; // Number of items for each category
