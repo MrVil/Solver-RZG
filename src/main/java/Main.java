@@ -7,8 +7,8 @@ public class Main {
 
         String weightsFile; //p08_w //energies_40
         String energiesFile; //p08_p //weights_40
-        int TAILLE = 5; //24 //40
-        int CAPACITY = 15; //6404180 //100
+        int TAILLE = 1000; //24 //40
+        int CAPACITY = 2000; //6404180 //100
         int BOUND = 10;
 
         for (int i = 0; i < 5; i ++) {
@@ -65,10 +65,11 @@ public class Main {
             solCustomRatio.defineModel();
             solCustomRatio.solve();
 
-
+/*
             ISolve solOptimal = new OptimalSolve(weightsArray, energiesArray, CAPACITY);
             solOptimal.defineModel();
             solOptimal.solve();
+*/
 
             System.out.println("START ----------------------------------- ITER : " + i);
         }

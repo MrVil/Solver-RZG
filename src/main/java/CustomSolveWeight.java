@@ -21,9 +21,9 @@ class CustomSolveWeight extends DefaultSolve {
                     int maxValue = -1;
                     for(int i = 0; i < variables.length; i++) {
                         if (!variables[i].isInstantiated()) {
-                            if (weights[i] > maxValue) {
+                            if (energies[i] > maxValue) {
                                 ret = variables[i];
-                                maxValue = weights[i];
+                                maxValue = energies[i];
                             }
                         }
                     }
