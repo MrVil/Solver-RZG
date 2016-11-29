@@ -6,14 +6,14 @@ public class Main {
 
     public static void main(String[] args){
 
-        String weights = "DATA\\weights_40.txt";
-        String energies = "DATA\\energies_40.txt";
+        String weights = "DATA/p08_w.txt";
+        String energies = "DATA/p08_p.txt";
 
         String line = null;
         String line2 = null;
 
-        int[] weightsArray = new int[40];
-        int[] energiesArray = new int[40];
+        int[] weightsArray = new int[24];
+        int[] energiesArray = new int[24];
 
         try {
             FileReader fr1 = new FileReader(weights);
