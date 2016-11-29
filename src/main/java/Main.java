@@ -6,14 +6,17 @@ public class Main {
 
     public static void main(String[] args){
 
-        String weights = "DATA/p08_w.txt";
-        String energies = "DATA/p08_p.txt";
+        String weights = "DATA/energies_40.txt";
+        String energies = "DATA/weights_40.txt";
+        int TAILLE = 40;
+        int CAPACITY = 200;
+
 
         String line = null;
         String line2 = null;
 
-        int[] weightsArray = new int[24];
-        int[] energiesArray = new int[24];
+        int[] weightsArray = new int[TAILLE];
+        int[] energiesArray = new int[TAILLE];
 
         try {
             FileReader fr1 = new FileReader(weights);
@@ -37,16 +40,14 @@ public class Main {
         finally {
             System.out.println("Successfully loaded files");
         }
-        ISolve sol = new DefaultSolve(weightsArray, energiesArray);
-        sol.defineModel();
-        sol.solve();
-//        ISolve sol = new DefaultSolve();
-//        sol.defineModel();
-//        sol.solve();
+        ISolve solDefault = new DefaultSolve(weightsArray, energiesArray, CAPACITY);
+        solDefault.defineModel();
+        solDefault.solve();
 
-//        ISolve sol = new ParetoSolve();
-//        sol.defineModel();
-//        sol.solve();
+
+        ISolve solCustom = new CustomSolve(weightsArray, energiesArray, CAPACITY);
+        solCustom.defineModel();
+        solCustom.solve();
 
 
     }

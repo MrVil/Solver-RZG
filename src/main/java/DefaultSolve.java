@@ -38,13 +38,12 @@ class DefaultSolve implements ISolve {
         for(int i = 0; i < n; i++){
             occurences[i] = model.intVar("O"+i, 0, 1);
         }
-        IntVar weightSum = model.intVar("ws", 0, n * 100);
-        energySum = model.intVar("es", 0, n*100);
+        IntVar weightSum = model.intVar("ws", 0, n * capacity);
+        energySum = model.intVar("es", 0, n*capacity);
 
         model.scalar(occurences, weight, "=", weightSum).post();
         model.scalar(occurences, energy, "=", energySum).post();
 
-        int capacity = 6404180;
         model.arithm(weightSum, "<=", capacity).post();
 
     }
