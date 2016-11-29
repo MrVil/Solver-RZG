@@ -4,7 +4,7 @@ import org.chocosolver.solver.variables.IntVar;
 
 import java.util.Random;
 
-class DefaultSolve implements ISolve {
+class OptimalSolve implements ISolve {
 
     static  Random rand = new Random();
     private static int n = 24;
@@ -22,7 +22,7 @@ class DefaultSolve implements ISolve {
         }
     }*/
 
-    DefaultSolve(int[] weight, int[] energy, int capacity) {
+    OptimalSolve(int[] weight, int[] energy, int capacity) {
         this.weight = weight;
         this.energy = energy;
 
@@ -50,8 +50,8 @@ class DefaultSolve implements ISolve {
 
     public void solve() {
 
-//        Solution solution = model.getSolver().findOptimalSolution(energySum, true);
-        Solution solution = model.getSolver().findSolution();
+        Solution solution = model.getSolver().findOptimalSolution(energySum, true);
+//        Solution solution = model.getSolver().findSolution();
         if(solution != null){
             System.out.println(solution.toString());
             //model.getSolver().printStatistics();

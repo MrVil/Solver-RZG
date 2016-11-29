@@ -6,10 +6,10 @@ public class Main {
 
     public static void main(String[] args){
 
-        String weights = "DATA/energies_40.txt";
-        String energies = "DATA/weights_40.txt";
-        int TAILLE = 40;
-        int CAPACITY = 200;
+        String weights = "DATA/p08_w.txt";
+        String energies = "DATA/p08_p.txt";
+        int TAILLE = 24;
+        int CAPACITY = 6404180; //6404180
 
 
         String line = null;
@@ -38,7 +38,7 @@ public class Main {
             e.printStackTrace();
         }
         finally {
-            System.out.println("Successfully loaded files");
+            System.out.println("Successfully loaded files\n");
         }
         ISolve solDefault = new DefaultSolve(weightsArray, energiesArray, CAPACITY);
         solDefault.defineModel();
@@ -49,6 +49,10 @@ public class Main {
         solCustom.defineModel();
         solCustom.solve();
 
+
+        ISolve solOptimal = new OptimalSolve(weightsArray, energiesArray, CAPACITY);
+        solOptimal.defineModel();
+        solOptimal.solve();
 
     }
 }
