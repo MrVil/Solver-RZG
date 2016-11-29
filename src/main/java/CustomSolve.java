@@ -19,11 +19,18 @@ class CustomSolve implements ISolve {
     private int[] weight = new int[n], energies = new int[n];
     private String stringReturn = "";
 
+    private double[] ratio;
+
     int capacity;
 
     CustomSolve(int[] weight, int[] energies, int capacity) {
         this.weight = weight;
         this.energies = energies;
+
+        this.ratio = new double[weight.length];
+        for(int i = 0; i<weight.length; i++) {
+            this.ratio[i] = energies[i]/weight[i];
+        }
 
         this.capacity = capacity;
 
@@ -82,7 +89,6 @@ class CustomSolve implements ISolve {
         ));
         */
 
-
         s.setSearch(Search.intVarSearch(
                 // variable selector
                 (VariableSelector<IntVar>) variables -> {
@@ -104,8 +110,27 @@ class CustomSolve implements ISolve {
                 occurences
         ));
 
-
-
+/*
+        s.setSearch(Search.intVarSearch(
+                // variable selector
+                (VariableSelector<IntVar>) variables -> {
+                    IntVar ret = null;
+                    double maxValue = 0;
+                    for(int i = 0; i < variables.length; i++) {
+                        if (!variables[i].isInstantiated()) {
+                            if (ratio[i] > maxValue) {
+                                ret = variables[i];
+                                maxValue = ratio[i];
+                            }
+                        }
+                    }
+                    return ret;
+                },
+                // value selector
+                (IntValueSelector) var -> var.getUB(),
+                // variables to branch on
+                occurences
+        ));*/
 
         Solution solution = s.findSolution();
         if(solution != null) {
