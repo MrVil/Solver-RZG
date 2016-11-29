@@ -6,8 +6,8 @@ public class Main {
 
     public static void main(String[] args){
 
-        String weights = "C:\\Users\\station2\\Documents\\Cours\\5A\\Master\\Graphe\\Solver-RZG\\DATA\\weights_40.txt";
-        String energies = "C:\\Users\\station2\\Documents\\Cours\\5A\\Master\\Graphe\\Solver-RZG\\DATA\\energies_40.txt";
+        String weights = "DATA\\weights_40.txt";
+        String energies = "DATA\\energies_40.txt";
 
         String line = null;
         String line2 = null;
