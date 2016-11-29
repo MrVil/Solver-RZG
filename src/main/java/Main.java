@@ -6,10 +6,10 @@ public class Main {
 
     public static void main(String[] args){
 
-        String weights = "DATA/p08_w.txt";
-        String energies = "DATA/p08_p.txt";
-        int TAILLE = 24;
-        int CAPACITY = 6404180; //6404180
+        String weights = "DATA/energies_40.txt"; //p08_w //energies_40
+        String energies = "DATA/weights_40.txt"; //p08_p //weights_40
+        int TAILLE = 40; //24 //40
+        int CAPACITY = 200; //6404180 //200
 
 
         String line = null;

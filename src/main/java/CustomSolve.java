@@ -12,7 +12,7 @@ import java.util.Random;
 class CustomSolve implements ISolve {
 
     static  Random rand = new Random();
-    private static int n = 24;
+    private static int n;
     private Model model = new Model("Backpack problem with "+n+" objects.");
     private IntVar[] occurences = new IntVar[n];
     private IntVar energySum = null;
@@ -82,6 +82,7 @@ class CustomSolve implements ISolve {
         ));
         */
 
+
         s.setSearch(Search.intVarSearch(
                 // variable selector
                 (VariableSelector<IntVar>) variables -> {
@@ -102,6 +103,9 @@ class CustomSolve implements ISolve {
                 // variables to branch on
                 occurences
         ));
+
+
+
 
         Solution solution = s.findSolution();
         if(solution != null) {
