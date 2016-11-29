@@ -28,20 +28,20 @@ class DefaultSolve implements ISolve {
         this.capacity = capacity;
 
         this.n = weight.length;
-        this.occurences = new IntVar[n];
+        this.occurrences = new IntVar[n];
         this.model = new Model("Backpack problem with "+n+" objects.");
     }
 
     public void defineModel() {
 
         for(int i = 0; i < n; i++){
-            occurences[i] = model.intVar("O"+i, 0, 1);
+            occurrences[i] = model.intVar("O"+i, 0, 1);
         }
         IntVar weightSum = model.intVar("ws", 0, n*capacity);
         IntVar energySum = model.intVar("es", 0, n * capacity);
 
-        model.scalar(occurences, weight, "=", weightSum).post();
-        model.scalar(occurences, energy, "=", energySum).post();
+        model.scalar(occurrences, weight, "=", weightSum).post();
+        model.scalar(occurrences, energy, "=", energySum).post();
 
         model.arithm(weightSum, "<=", capacity).post();
 
