@@ -10,7 +10,6 @@ class DefaultSolve implements ISolve {
     private static int n = 24;
     private Model model = new Model("Backpack problem with "+n+" objects.");
     private IntVar[] occurrences = new IntVar[n];
-    private IntVar energySum = null;
     private int[] weight = new int[n], energy = new int[n];
 
     /*public static void randomize() {
@@ -32,7 +31,7 @@ class DefaultSolve implements ISolve {
             occurrences[i] = model.intVar("O"+i, 0, 1);
         }
         IntVar weightSum = model.intVar("ws", 0, n*capacity);
-        energySum = model.intVar("es", 0, n*capacity);
+        IntVar energySum = model.intVar("es", 0, n * capacity);
 
         model.scalar(occurrences, weight, "=", weightSum).post();
         model.scalar(occurrences, energy, "=", energySum).post();
