@@ -26,7 +26,6 @@ public class Main {
 
             while((line = br1.readLine()) != null) {
                 weightsArray[count] = Integer.parseInt(line);
-
                 energiesArray[count] = Integer.parseInt(br2.readLine());
                 count++;
             }
