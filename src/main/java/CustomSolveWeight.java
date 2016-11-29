@@ -38,7 +38,7 @@ class CustomSolveWeight extends DefaultSolve {
         Solution solution = s.findSolution();
         if(solution != null) {
             System.out.println(solution.toString());
-            model.getSolver().printStatistics();
+            model.getSolver().printShortStatistics();
         }
     }
 }

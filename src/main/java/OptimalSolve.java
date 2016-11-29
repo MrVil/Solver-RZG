@@ -14,7 +14,7 @@ class OptimalSolve extends DefaultSolve {
         Solution solution = model.getSolver().findOptimalSolution(energySum, true);
         if(solution != null){
             System.out.println(solution.toString());
-            model.getSolver().printStatistics();
+            model.getSolver().printShortStatistics();
         }
     }
 }

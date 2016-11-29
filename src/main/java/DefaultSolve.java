@@ -45,7 +45,7 @@ class DefaultSolve implements ISolve {
         Solution solution = model.getSolver().findSolution();
         if(solution != null){
             System.out.println(solution.toString());
-            model.getSolver().printStatistics();
+            model.getSolver().printShortStatistics();
         }
     }
 }
