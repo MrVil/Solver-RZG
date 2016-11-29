@@ -1,5 +1,3 @@
-import org.chocosolver.solver.Model;
-
 import java.io.*;
 
 public class Main {
@@ -9,7 +7,7 @@ public class Main {
         String weights = "DATA/energies_40.txt"; //p08_w //energies_40
         String energies = "DATA/weights_40.txt"; //p08_p //weights_40
         int TAILLE = 40; //24 //40
-        int CAPACITY = 200; //6404180 //200
+        int CAPACITY = 100; //6404180 //100
 
 
         String line = null;
@@ -40,14 +38,21 @@ public class Main {
         finally {
             System.out.println("Successfully loaded files\n");
         }
+
+
         ISolve solDefault = new DefaultSolve(weightsArray, energiesArray, CAPACITY);
         solDefault.defineModel();
         solDefault.solve();
 
 
-        ISolve solCustom = new CustomSolve(weightsArray, energiesArray, CAPACITY);
-        solCustom.defineModel();
-        solCustom.solve();
+        ISolve solCustomWeight = new CustomSolveWeight(weightsArray, energiesArray, CAPACITY);
+        solCustomWeight.defineModel();
+        solCustomWeight.solve();
+
+
+        ISolve solCustomRatio = new CustomSolveRatio(weightsArray, energiesArray, CAPACITY);
+        solCustomRatio.defineModel();
+        solCustomRatio.solve();
 
 
         ISolve solOptimal = new OptimalSolve(weightsArray, energiesArray, CAPACITY);

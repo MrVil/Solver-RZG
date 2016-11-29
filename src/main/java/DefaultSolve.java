@@ -7,53 +7,45 @@ import java.util.Random;
 class DefaultSolve implements ISolve {
 
     static  Random rand = new Random();
-    private static int n = 24;
-    private Model model = new Model("Backpack problem with "+n+" objects.");
-    private IntVar[] occurrences = new IntVar[n];
-    private int[] weight = new int[n], energy = new int[n];
+    protected static int n = 24;
+    protected Model model = new Model("Backpack problem with "+n+" objects.");
+    protected IntVar[] occurences = new IntVar[n];
+    protected int[] weights = new int[n], energies = new int[n];
+    protected int capacity;
+    protected IntVar weightSum;
+    protected IntVar energySum;
 
-    int capacity;
-
-    /*public static void randomize() {
-        for(int i = 0; i < n; i++){
-            weight[i] = rand.nextInt(n*10);
-            energy[i] = rand.nextInt(n*10);
-        }
-    }*/
-
-    DefaultSolve(int[] weight, int[] energy, int capacity) {
-        this.weight = weight;
-        this.energy = energy;
+    DefaultSolve(int[] weights, int[] energies, int capacity) {
+        this.weights = weights;
+        this.energies = energies;
 
         this.capacity = capacity;
 
-        this.n = weight.length;
-        this.occurrences = new IntVar[n];
+        this.n = weights.length;
+        this.occurences = new IntVar[n];
         this.model = new Model("Backpack problem with "+n+" objects.");
     }
 
     public void defineModel() {
 
         for(int i = 0; i < n; i++){
-            occurrences[i] = model.intVar("O"+i, 0, 1);
+            occurences[i] = model.intVar("O"+i, 0, 1);
         }
-        IntVar weightSum = model.intVar("ws", 0, n*capacity);
-        IntVar energySum = model.intVar("es", 0, n * capacity);
+        weightSum = model.intVar("ws", 0, n * capacity);
+        energySum = model.intVar("es", 0, n * capacity);
 
-        model.scalar(occurrences, weight, "=", weightSum).post();
-        model.scalar(occurrences, energy, "=", energySum).post();
+        model.scalar(occurences, weights, "=", weightSum).post();
+        model.scalar(occurences, energies, "=", energySum).post();
 
         model.arithm(weightSum, "<=", capacity).post();
 
     }
 
     public void solve() {
-
-//        Solution solution = model.getSolver().findOptimalSolution(energySum, true);
         Solution solution = model.getSolver().findSolution();
         if(solution != null){
             System.out.println(solution.toString());
-            //model.getSolver().printStatistics();
+            model.getSolver().printStatistics();
         }
     }
 }
