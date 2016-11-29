@@ -9,9 +9,11 @@ class DefaultSolve implements ISolve {
     static  Random rand = new Random();
     private static int n = 24;
     private Model model = new Model("Backpack problem with "+n+" objects.");
-    private IntVar[] occurrences = new IntVar[n];
+    private IntVar[] occurences = new IntVar[n];
     private IntVar energySum = null;
     private int[] weight = new int[n], energy = new int[n];
+
+    int capacity;
 
     /*public static void randomize() {
         for(int i = 0; i < n; i++){
@@ -20,33 +22,40 @@ class DefaultSolve implements ISolve {
         }
     }*/
 
-    DefaultSolve(int[] weight, int[] energy) {
+    DefaultSolve(int[] weight, int[] energy, int capacity) {
         this.weight = weight;
         this.energy = energy;
+
+        this.capacity = capacity;
+
+        this.n = weight.length;
+        this.occurences = new IntVar[n];
+        this.model = new Model("Backpack problem with "+n+" objects.");
     }
 
     public void defineModel() {
 
-        int capacity = 6404180;
         for(int i = 0; i < n; i++){
-            occurrences[i] = model.intVar("O"+i, 0, 1);
+            occurences[i] = model.intVar("O"+i, 0, 1);
         }
-        IntVar weightSum = model.intVar("ws", 0, n*capacity);
-        energySum = model.intVar("es", 0, n*capacity);
+        IntVar weightSum = model.intVar("ws", 0, n * 100);
+        energySum = model.intVar("es", 0, n*100);
 
-        model.scalar(occurrences, weight, "=", weightSum).post();
-        model.scalar(occurrences, energy, "=", energySum).post();
+        model.scalar(occurences, weight, "=", weightSum).post();
+        model.scalar(occurences, energy, "=", energySum).post();
 
-
+        int capacity = 6404180;
         model.arithm(weightSum, "<=", capacity).post();
 
     }
 
     public void solve() {
 
-        Solution solution = model.getSolver().findSolution();//findOptimalSolution(energySum, true);
+//        Solution solution = model.getSolver().findOptimalSolution(energySum, true);
+        Solution solution = model.getSolver().findSolution();
         if(solution != null){
             System.out.println(solution.toString());
+            model.getSolver().printStatistics();
         }
     }
 }
