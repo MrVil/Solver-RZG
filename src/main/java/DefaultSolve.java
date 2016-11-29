@@ -21,6 +21,15 @@ public class DefaultSolve implements ISolve {
         }
     }
 
+    public DefaultSolve(int[] weight, int[] energy) {
+        this.weight = weight;
+        this.energy = energy;
+
+        this.capacity = weight.length;
+        this.n = weight.length;
+        this.occurences = new IntVar[n];
+    }
+
     public void defineModel() {
 
         for(int i = 0; i < n; i++){
